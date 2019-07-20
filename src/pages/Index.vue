@@ -46,6 +46,11 @@
       </div>
       <div class="col editor-col">
         <!-- ファイルパス -->
+        <div class="bg-blue-grey-6">
+          <q-input dense dark borderless readonly class="q-mx-sm"
+            :value="currentFile && currentFile.name"
+            />
+        </div>
         <!-- エディター -->
         <div id="editor"></div>
       </div>
