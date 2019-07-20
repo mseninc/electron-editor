@@ -9,6 +9,7 @@
           </template>
           <template v-slot:append>
             <q-icon name="more_horiz" class="cursor-pointer"
+            @click="showOpenDialog"
               />
           </template>
         </q-input>
@@ -74,6 +75,7 @@
 <script>
 import fs from 'fs';
 import path from 'path';
+import { remote } from 'electron';
 import 'ace-min-noconflict';
 
 export default {
@@ -122,6 +124,17 @@ export default {
     moveCurrentDir(dirPath) {
       this.currentDir = dirPath;
       this.loadItems();
+    },
+    showOpenDialog() {
+      const dirs = remote.dialog.showOpenDialog(
+        remote.BrowserWindow.getFocusedWindow(),
+        {
+          properties: ['openDirectory'],
+          defaultPath: this.currentDir,
+        },
+      );
+      if (!dirs) return;
+      this.moveCurrentDir(dirs.pop());
     },
   },
   mounted() {
