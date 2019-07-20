@@ -115,7 +115,13 @@ export default {
         fs.readFile(item.absolutePath, 'utf8', (err, data) => {
           this.editor.setValue(data, -1);
         });
+      } else {
+        this.moveCurrentDir(item.absolutePath);
       }
+    },
+    moveCurrentDir(dirPath) {
+      this.currentDir = dirPath;
+      this.loadItems();
     },
   },
   mounted() {
