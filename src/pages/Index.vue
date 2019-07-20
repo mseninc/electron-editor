@@ -111,7 +111,7 @@ export default {
             absolutePath,
             isFile,
           };
-        });
+        }).sort(x => (x.isFile ? 1 : -1));
       });
     },
     setCurrentItem(item) {
