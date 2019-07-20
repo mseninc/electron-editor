@@ -3,21 +3,34 @@
     <div class="row q-px-sm bg-blue-grey-5">
       <!-- ヘッダー (フォルダパス) -->
       <div class="col-xs-12">
-        <q-input dense dark borderless :value="currentDir">
+        <q-field dense dark borderless>
           <template v-slot:prepend>
             <q-icon name="folder" />
           </template>
           <template v-slot:append>
             <q-icon name="more_horiz" class="cursor-pointer"
-            @click="showOpenDialog"
+              @click="showOpenDialog"
               />
           </template>
-        </q-input>
+          <template v-slot:control>
+            <q-breadcrumbs gutter="xs"
+              class="text-no-wrap"
+              active-color="white"
+              separator-color="blue-grey-2"
+              :separator="pathSeparator"
+              >
+              <q-breadcrumbs-el class="cursor-pointer"
+                v-for="part in breadcrumbs" :key="`breadcrumbs_${part.label}`"
+                :label="part.label"
+                @click="moveCurrentDir(part.absolutePath)"
+                />
+            </q-breadcrumbs>
+          </template>
+        </q-field>
       </div>
     </div>
     <div class="row">
       <div class="col col-grow list-col">
-        <!-- フィルターテキストボックス -->
         <!-- フィルターテキストボックス -->
         <div class="bg-blue-grey-6">
           <q-input dense dark borderless class="q-mx-sm"
@@ -102,6 +115,21 @@ export default {
       if (!this.filterPattern) return this.list;
       const regex = new RegExp(this.filterPattern);
       return this.list.filter(x => regex.test(x.name));
+    },
+    pathSeparator() {
+      return path.sep;
+    },
+    breadcrumbs() {
+      const normalized = path.normalize(this.currentDir);
+      const splitted = normalized.split(path.sep);
+      let absolutePath = '';
+      return splitted.map((label) => {
+        absolutePath += `${label}${path.sep}`;
+        return {
+          label,
+          absolutePath,
+        };
+      });
     },
   },
   methods: {
