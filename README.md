@@ -2,7 +2,7 @@
 
 An Electron-based simplest text editor made for a MSEN workshop.
 
-![](docs/img/electron-editor-sample.png)
+![](docs/img/electron-editor-sample.gif)
 
 ## Detail
 
