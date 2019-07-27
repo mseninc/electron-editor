@@ -146,7 +146,7 @@ CSS, HTML, JavaScript などの細かいところは掘り下げません
 
 ```bash
 $ cd c:\repos
-$ npm install -g quasar-cli
+$ npm install -g @quasar/cli
 $ quasar create electron-editor
 
 ? Project name (internal usage for dev)
@@ -164,7 +164,7 @@ $ quasar create electron-editor
 ? Cordova id (disregard if not building mobile apps)
     org.cordova.quasar.app
 ? Should we run `npm install` for you after the project has been created?
-    yarn
+    npm
 ```
 
 ※git bash だとプロンプトがうまく動作しないことがあるためコマンドプロンプトを推奨
@@ -346,7 +346,7 @@ export default {
   },
   mounted() {
     // methods や props などは this で参照できる
-    this.method(this.computed1); // 300
+    this.method1(this.computed1); // 300
   },
 };
 ```
@@ -740,12 +740,12 @@ setCurrentItem(item) {
 [
   {
     name: 'ファイル1',
-    aboslutePath: 'C:\path\to\ファイル1', // 追加
+    absolutePath: 'C:\path\to\ファイル1', // 追加
     isFile: true,
   },
   {
     name: 'フォルダ1',
-    aboslutePath: 'C:\path\to\フォルダ1', // 追加
+    absolutePath: 'C:\path\to\フォルダ1', // 追加
     isFile: false,
   },
   ...
