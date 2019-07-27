@@ -740,12 +740,12 @@ setCurrentItem(item) {
 [
   {
     name: 'ファイル1',
-    aboslutePath: 'C:\path\to\ファイル1', // 追加
+    absolutePath: 'C:\path\to\ファイル1', // 追加
     isFile: true,
   },
   {
     name: 'フォルダ1',
-    aboslutePath: 'C:\path\to\フォルダ1', // 追加
+    absolutePath: 'C:\path\to\フォルダ1', // 追加
     isFile: false,
   },
   ...
